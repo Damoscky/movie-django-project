@@ -13,7 +13,8 @@
             <a href={{movie.id}}> 
                 <li> {{movie.id}}, Title: {{movie.title}}, Year: {{movie.year}}</li> 
             </a> &nbsp;
-            <a href="/movies/delete/{{movie.id}}">Delete</a>
+            <a href="/movies/delete/{{movie.id}}">Delete</a> 
+            <a href="/movies/edit/{{movie.id}}">Edit</a> 
         {% endfor %}
     </ul>
     <a href="/movies/add">Add a movie</a>

@@ -21,6 +21,14 @@ def movie(request, id):
 def addMovies(request):
     return render(request, 'movies/add-movie.html')
 
+def edit(request, id):
+    try:
+        movie = Movie.objects.get(pk=id)
+    except:
+        raise Http404("Invalid Movie Id")
+    return render(request, 'movies/edit-movie.html', {'movie': movie})
+ 
+
 def store(request):
     title = request.POST['title']
     year = request.POST['year']
@@ -32,6 +40,20 @@ def store(request):
         )
         movie.save()
         return HttpResponseRedirect('/movies')
+
+def update(request, id):
+    try:
+        movie = Movie.objects.get(pk=id)
+    except:
+        raise Http404('Invalid Movie Id')
+    title = request.POST['title']
+    year = request.POST['year']
+
+    movie.title = title
+    movie.year = year
+    movie.save()
+    return HttpResponseRedirect('/movies')
+
 
 def delete(request, id):
     try:
